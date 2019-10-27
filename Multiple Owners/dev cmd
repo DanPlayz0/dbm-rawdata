@@ -1,26 +1,28 @@
-{
-  "name": "dev",
-  "permissions": "NONE",
-  "restriction": "4",
-  "_id": "mQDOW",
-  "actions": [
-    {
-      "comment": "Made by Destiny#2923",
-      "color": "#00ffff",
-      "name": "Comment"
-    },
-    {
-      "comment": "Edited by DanPlayzYT#3965",
-      "color": "#00ffff",
-      "name": "Comment"
-    },
-    {
-      "behavior": "1",
-      "interpretation": "1",
-      "code": "const prefix = (server && server.tag) || Files.data.settings.tag;\nconst args = msg.content.replace(prefix, '').split(/ +/g);\nconst fs = require('fs');\nconst path = './resources/dev.txt';\nif (!require(path)) {\n   fs.appendFileSync(path, '');\n}\nconst data = fs.readFileSync(path, 'utf-8');\nconst id = String(args[2]);\n\nif(args[1] == \"add\" && args.length > 1){\n\tif(data.includes(id)){\n\t\tmsg.channel.send('This user is already a bot dev!');\n\t}else{\n\t\tfs.appendFileSync(path, id+',', 'utf8');\n\t\tmsg.channel.send(`Added \\`${id}\\` to bot dev list!`);\n\t}\n}else if(args[1] == \"remove\" && args.length > 1){\n\tif(data.includes(id)){\n\t\tvar newValue = data.replace(new RegExp(id)+',', '');\n\t\tfs.writeFileSync(path, newValue, 'utf-8');\n\t\tmsg.channel.send(`Removed \\`${id}\\` from bot dev list!`);\n\t}else{\n\t\tmsg.channel.send(`That user is not a bot dev`);\n\t}\n}else{\n\tmsg.channel.send(`Incorrect Usage. Please use \\`${prefix}dev [add|remove] <user>\\``);\n}\n",
-      "storage": "0",
-      "varName": "",
-      "name": "Run Script"
-    }
-  ]
+const prefix = (server && server.tag) || Files.data.settings.tag;
+const args = msg.content.replace(prefix, '').split(/ +/g);
+const fs = require('fs');
+const path = './resources/dev.txt';
+if (!require(path)) {
+   fs.appendFileSync(path, '');
+}
+const data = fs.readFileSync(path, 'utf-8');
+const id = String(args[2]);
+
+if(args[1] == "add" && args.length > 1){
+	if(data.includes(id)){
+		msg.channel.send('This user is already a bot dev!');
+	}else{
+		fs.appendFileSync(path, ','+id, 'utf8');
+		msg.channel.send(`Added \`${id}\` to bot dev list!`);
+	}
+}else if(args[1] == "remove" && args.length > 1){
+	if(data.includes(id)){
+		var newValue = data.replace(','+new RegExp(id), '');
+		fs.writeFileSync(path, newValue, 'utf-8');
+		msg.channel.send(`Removed \`${id}\` from bot dev list!`);
+	}else{
+		msg.channel.send(`That user is not a bot dev`);
+	}
+}else{
+	msg.channel.send(`Incorrect Usage. Please use \`${prefix}dev [add|remove] <user>\``);
 }
