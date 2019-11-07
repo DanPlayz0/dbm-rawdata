@@ -1,0 +1,19 @@
+{
+  "name": "add-question",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "HprJM",
+  "actions": [
+    {
+      "behavior": "1",
+      "interpretation": "1",
+      "code": "const prefix = (server && server.tag) || Files.data.settings.tag;\nconst args = msg.content.replace(server.tag, '').split(/ +/g);\nconst questions = serverVars(\"app-questions\")\nconst quest = args.join(' ').replace(args[0], '').replace(' ', '');\n\nif(args.length > 1){\n\tif(!questions){\n\t\tthis.storeValue([], 2, \"app-questions\", cache);\n\t}\n\tquestions.push(quest);\n\tmsg.channel.send(`Added \\`\\`\\`${quest}\\`\\`\\``);\n}else{\n\tmsg.channel.send(`Usage: \\`${prefix}addquestion [question]\\``);\n}",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "_aliases": [
+    "addquestion"
+  ]
+}
