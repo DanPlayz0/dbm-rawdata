@@ -1,0 +1,27 @@
+{
+  "name": "antiads",
+  "permissions": "NONE",
+  "restriction": "0",
+  "_id": "antiads",
+  "actions": [
+    {
+      "message": "0",
+      "value": "300",
+      "whattodo": "2",
+      "call": "",
+      "storage": "0",
+      "varName": "",
+      "source": "antiads",
+      "name": "Set Time Restriction"
+    },
+    {
+      "behavior": "0",
+      "interpretation": "0",
+      "code": "const db = require('quick.db')\nconst statads = db.get(`settings.${server.id}.statads`);\nif (statads == \"enabled\") {\n\tif(msg.author.presence.game == \"Custom Status\"){\n\t\tif(msg.author.presence.game.state.includes('discord.gg')){\n\t\t\tconst e = new DiscordJS.RichEmbed();\n\t\t\te.setColor('RED');\n\t\t\te.setAuthor(server.name,server.iconURL);\n\t\t\te.setDescription('Please stop advertising in your status.');\n\t\t\tmsg.author.send(e);\n\t\t}\n\t}\n}\n",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "3"
+}
