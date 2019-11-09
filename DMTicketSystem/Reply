@@ -1,0 +1,17 @@
+{
+  "name": "Reply",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "GqcxY",
+  "actions": [
+    {
+      "behavior": "0",
+      "interpretation": "1",
+      "code": "const text = msg.content.replace(server.tag, '').split(/ +/g);\ntext.shift()\nconst tcategory = server.channels.get(globalVars(\"ticketsys-id\"));\nif (msg.channel.parent == tcategory) {\n    const tuser = client.users.get(msg.channel.name);\n    const em = new DiscordJS.RichEmbed()\n    .setTitle(\"Supporter Reply\")\n    .setColor(\"BLUE\")\n    .setAuthor(msg.author.tag, msg.author.displayAvatarURL)\n    .setDescription(text.join(' '))\n    .setTimestamp();\n    msg.channel.send(em);\n    tuser.send(em);\n} else {\n    const em = new DiscordJS.RichEmbed()\n    .setColor(\"#FF0000\")\n    .setDescription(\"⚠ this is not a ticket!\");\n    msg.channel.send(em);\n}",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "0"
+}
