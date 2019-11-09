@@ -1,0 +1,17 @@
+{
+  "name": "DM",
+  "permissions": "NONE",
+  "restriction": "3",
+  "_id": "UoTHn",
+  "actions": [
+    {
+      "behavior": "0",
+      "interpretation": "1",
+      "code": "(async () => {\n    const textt = msg.content\n    if (msg.channel.type == 'dm') {\n        const tserver = client.guilds.get(globalVars(\"ticketsys-id\"));\n        const tcategory = tserver.channels.get(globalVars(\"ticketsys-id\"));\n        if (!tserver.channels.some(c => c.parent == tcategory && c.name.includes(msg.author.id))) {\n            const tchannel = await tserver.createChannel(msg.author.id, {\n                type: 'text',\n                parent: tcategory\n            });\n            const emb = new DiscordJS.RichEmbed()\n            .setColor(\"BLUE\")\n            .setDescription(\"Thank you for contacting the support team, there will be someone with you shortly\");\n            msg.author.send(emb);\n            const em = new DiscordJS.RichEmbed()\n            .setTitle(\"New Ticket\")\n            .setAuthor(msg.author.tag, msg.author.displayAvatarURL)\n            .setColor(\"BLUE\")\n            .setDescription(textt)\n            .setTimestamp();\n            tchannel.send(em);\n        } else {\n            const tchannel = tserver.channels.find(c => c.name.includes(msg.author.id))\n            const em = new DiscordJS.RichEmbed()\n            .setAuthor(msg.author.tag, msg.author.displayAvatarURL)\n            .setColor(\"BLUE\")\n            .setDescription(textt)\n            .setTimestamp();\n            tchannel.send(em);\n        }\n    } \n})()",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "3"
+}
