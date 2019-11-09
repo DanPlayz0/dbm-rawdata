@@ -1,0 +1,17 @@
+{
+  "name": "CloseT",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "GLAGA",
+  "actions": [
+    {
+      "behavior": "0",
+      "interpretation": "1",
+      "code": "const tcategory = server.channels.get(globalVars(\"ticketsys-id\")); // Change 'ID' to the ID of your ticket category (do NOT remove quotes)\nif (msg.channel.parent == tcategory) {\n    const tuser = client.users.get(msg.channel.name);\n    const em = new DiscordJS.RichEmbed()\n    .setTitle(\"Ticket Closed\")\n    .setColor(\"BLUE\")\n    .setAuthor(msg.author.tag, msg.author.displayAvatarURL)\n    .setDescription('The ticket has been closed by a member of the support team, if you feel like needing more support please dont hesitate to send the bot a message.')\n    .setTimestamp();\n    msg.channel.send(em);\n    tuser.send(em);\n    msg.channel.send(\"Deleting channel in 10 seconds..\")\n    setTimeout(function(){\n        msg.channel.delete()\n     }, 10000);\n} else {\n    const em = new DiscordJS.RichEmbed()\n    .setColor(\"#FF0000\")\n    .setDescription(\"⚠ this is not a ticket!\");\n    msg.channel.send(em);\n}",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "0"
+}
