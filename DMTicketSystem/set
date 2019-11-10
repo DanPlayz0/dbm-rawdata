@@ -1,0 +1,16 @@
+{
+  "name": "set",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "EqamO",
+  "actions": [
+    {
+      "behavior": "0",
+      "interpretation": "1",
+      "code": "const args = msg.content.replace(server.tag, '').split(/ +/g);\nargs.shift();\nconst Category = server.channels.get(args[0]);\n\nif (msg.member.id != Files.data.settings.ownerId) {\n    msg.channel.send(`:x: Bot owner only`);\n} else {\n    if (Category && Category.type) {\n        this.storeValue(Category, 3, \"ticketsys-id\", cache);\n        Files.saveGlobalVariable(\"ticketsys-id\", Category);\n        msg.channel.send(`Ticket category set to \\`${Category.name}\\``);\n    } else {\n        msg.channel.send(`:x: You need to insert the ID of a category!`);\n    }\n}",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ]
+}h
