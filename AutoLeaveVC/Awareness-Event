@@ -1,0 +1,17 @@
+{
+    "name": "[Bot] LeaveVC",
+    "temp": "",
+    "event-type": "22",
+    "_id": "JYPVw",
+    "actions": [
+        {
+            "behavior": "1",
+            "interpretation": "1",
+            "code": "if (me.voiceChannel && me.voiceChannel.members.size === 1) {\nAudio.queue[server.id] = [];\nAudio.dispatchers[server.id]._forceEnd = true;\nAudio.dispatchers[server.id].end();\nme.voiceChannel.leave();\n}",
+            "storage": "0",
+            "varName": "",
+            "name": "Run Script"
+        }
+    ],
+    "temp2": ""
+}
